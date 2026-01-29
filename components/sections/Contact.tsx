@@ -46,16 +46,44 @@ export function Contact() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
 
+    const [errorMessage, setErrorMessage] = useState('');
+
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
+        setErrorMessage('');
 
-        // Simulate form submission
-        await new Promise((resolve) => setTimeout(resolve, 1500));
+        try {
+            // Using Web3Forms for form submission (free tier)
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    access_key: 'YOUR_WEB3FORMS_ACCESS_KEY', // Replace with actual key from web3forms.com
+                    from_name: 'Elev8 Media Website',
+                    subject: `New Inquiry from ${formData.name}`,
+                    name: formData.name,
+                    email: formData.email,
+                    company: formData.company || 'Not provided',
+                    message: formData.message,
+                }),
+            });
 
-        setIsSubmitting(false);
-        setIsSubmitted(true);
-        setFormData({ name: '', email: '', company: '', message: '' });
+            const result = await response.json();
+
+            if (result.success) {
+                setIsSubmitted(true);
+                setFormData({ name: '', email: '', company: '', message: '' });
+            } else {
+                setErrorMessage('Something went wrong. Please try again or email us directly.');
+            }
+        } catch {
+            setErrorMessage('Network error. Please try again or email us directly.');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -207,6 +235,13 @@ export function Contact() {
                                         </label>
                                     </div>
 
+                                    {/* Error Message */}
+                                    {errorMessage && (
+                                        <div className="text-red-400 text-sm bg-red-400/10 px-4 py-3 rounded-lg">
+                                            {errorMessage}
+                                        </div>
+                                    )}
+
                                     {/* Submit */}
                                     <Button
                                         type="submit"
@@ -217,6 +252,26 @@ export function Contact() {
                                     >
                                         Send Inquiry
                                     </Button>
+
+                                    {/* Or Schedule a Call */}
+                                    <div className="text-center pt-4">
+                                        <span className="text-muted text-sm">Or</span>
+                                    </div>
+
+                                    <a
+                                        href="https://calendly.com/theplotarmour/30min"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 
+                                           border border-[var(--glass-border)] rounded-lg
+                                           text-white hover:border-cyan hover:text-cyan
+                                           transition-all duration-300 font-medium"
+                                    >
+                                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                        </svg>
+                                        Schedule a 30-min Call
+                                    </a>
                                 </form>
                             )}
                         </div>
@@ -225,6 +280,24 @@ export function Contact() {
                     {/* Info side */}
                     <ScrollReveal animation="fadeRight" className="lg:sticky lg:top-32">
                         <div className="space-y-10">
+                            {/* Schedule a Call - Primary CTA */}
+                            <div className="glass-card bg-cyan/10 border-cyan/30">
+                                <h3 className="text-label mb-4 text-cyan">Book a Discovery Call</h3>
+                                <p className="text-muted mb-4">Let's discuss how we can accelerate your growth</p>
+                                <a
+                                    href="https://calendly.com/theplotarmour/30min"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-3 px-6 py-3 bg-cyan text-dark 
+                                       rounded-lg font-medium hover:bg-cyan/90 transition-colors"
+                                >
+                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                    Schedule 30-min Call
+                                </a>
+                            </div>
+
                             {/* Get in Touch */}
                             <div>
                                 <h3 className="text-label mb-4">Get in Touch</h3>
