@@ -9,7 +9,7 @@ const projects = [
         id: 1,
         client: 'TechVenture Studios',
         title: 'BRAND TRANSFORMATION',
-        image: '/projects/project-1.jpg',
+        image: '/projects/project-1.png',
         category: 'Brand Strategy',
         metrics: {
             revenue: '+340%',
@@ -22,7 +22,7 @@ const projects = [
         id: 2,
         client: 'Horizon Health',
         title: 'MARKET EXPANSION',
-        image: '/projects/project-2.jpg',
+        image: '/projects/project-2.png',
         category: 'Digital Marketing',
         metrics: {
             revenue: '+280%',
@@ -35,7 +35,7 @@ const projects = [
         id: 3,
         client: 'Atlas Finance',
         title: 'PERFORMANCE SURGE',
-        image: '/projects/project-3.jpg',
+        image: '/projects/project-3.png',
         category: 'Performance Marketing',
         metrics: {
             revenue: '+420%',
@@ -48,7 +48,7 @@ const projects = [
         id: 4,
         client: 'Nova Lifestyle',
         title: 'SOCIAL DOMINANCE',
-        image: '/projects/project-4.jpg',
+        image: '/projects/project-4.png',
         category: 'Social Strategy',
         metrics: {
             revenue: '+195%',
@@ -119,22 +119,20 @@ export function FeaturedWork() {
                         transition={{ duration: 0.4 }}
                     >
                         <div className="glass-card p-0 overflow-hidden group cursor-pointer">
-                            {/* Project image placeholder */}
+                            {/* Project image */}
                             <div
-                                className="relative aspect-[4/3] bg-[var(--color-dark-surface)] overflow-hidden"
+                                className="relative aspect-[4/3] overflow-hidden"
                             >
+                                <img
+                                    src={project.image}
+                                    alt={project.title}
+                                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                />
+
+                                {/* Overlay gradient */}
                                 <div
-                                    className="absolute inset-0 flex items-center justify-center text-[var(--color-dark-border)]"
-                                    style={{
-                                        background: `linear-gradient(135deg, var(--color-dark-surface) 0%, var(--color-dark-space) 100%)`,
-                                    }}
-                                >
-                                    <svg className="w-24 h-24 opacity-20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <rect x="3" y="3" width="18" height="18" rx="2" strokeWidth="1" />
-                                        <circle cx="8.5" cy="8.5" r="1.5" strokeWidth="1" />
-                                        <path d="M21 15l-5-5L5 21" strokeWidth="1" />
-                                    </svg>
-                                </div>
+                                    className="absolute inset-0 bg-gradient-to-t from-[var(--color-dark-primary)] via-transparent to-transparent opacity-60"
+                                />
 
                                 {/* Category badge */}
                                 <div className="absolute top-4 left-4">
@@ -194,8 +192,8 @@ export function FeaturedWork() {
                     <button
                         key={index}
                         className={`w-2 h-2 rounded-full transition-all duration-300 ${activeIndex === index
-                                ? 'w-8 bg-cyan'
-                                : 'bg-[var(--color-dark-border)] hover:bg-[var(--color-dark-border-light)]'
+                            ? 'w-8 bg-cyan'
+                            : 'bg-[var(--color-dark-border)] hover:bg-[var(--color-dark-border-light)]'
                             }`}
                         onClick={() => {
                             containerRef.current?.scrollTo({

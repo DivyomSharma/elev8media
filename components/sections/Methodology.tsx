@@ -130,7 +130,7 @@ export function Methodology() {
                     </svg>
 
                     {/* Phase cards grid */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 relative z-10">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 relative z-10">
                         {phases.map((phase, index) => (
                             <ScrollReveal
                                 key={phase.id}
@@ -138,7 +138,7 @@ export function Methodology() {
                                 delay={index * 0.1}
                             >
                                 <motion.div
-                                    className="glass-card text-center h-full p-6 md:p-8"
+                                    className="glass-card text-center h-full min-h-[220px] md:min-h-[260px] p-4 md:p-6 flex flex-col justify-center"
                                     whileHover={{ scale: 1.02 }}
                                     style={{
                                         borderColor: `color-mix(in srgb, ${phase.color} 30%, transparent)`,
@@ -146,19 +146,19 @@ export function Methodology() {
                                 >
                                     {/* Phase number */}
                                     <span
-                                        className="text-mono text-sm mb-4 block"
+                                        className="text-mono text-xs md:text-sm mb-2 md:mb-3 block"
                                         style={{ color: phase.color }}
                                     >
                                         {phase.id}
                                     </span>
 
                                     {/* Title */}
-                                    <h3 className="text-display text-xl md:text-2xl mb-4">
+                                    <h3 className="text-display text-base md:text-xl lg:text-2xl mb-2 md:mb-3">
                                         {phase.title}
                                     </h3>
 
                                     {/* Description */}
-                                    <p className="text-sm md:text-base text-muted leading-relaxed">
+                                    <p className="text-xs md:text-sm text-muted leading-relaxed">
                                         {phase.description}
                                     </p>
                                 </motion.div>
