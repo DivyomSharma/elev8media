@@ -44,46 +44,27 @@ export function Contact() {
         message: '',
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [isSubmitted, setIsSubmitted] = useState(false);
 
-    const [errorMessage, setErrorMessage] = useState('');
-
-    const handleSubmit = async (e: FormEvent) => {
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
-        setErrorMessage('');
 
-        try {
-            // Using Web3Forms for form submission (free tier)
-            const response = await fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    access_key: 'YOUR_WEB3FORMS_ACCESS_KEY', // Replace with actual key from web3forms.com
-                    from_name: 'Elev8 Media Website',
-                    subject: `New Inquiry from ${formData.name}`,
-                    name: formData.name,
-                    email: formData.email,
-                    company: formData.company || 'Not provided',
-                    message: formData.message,
-                }),
-            });
+        // Build mailto URL with form data
+        const subject = encodeURIComponent(`New Inquiry from ${formData.name}`);
+        const body = encodeURIComponent(
+            `Name: ${formData.name}\n` +
+            `Email: ${formData.email}\n` +
+            `Company: ${formData.company || 'Not provided'}\n\n` +
+            `Message:\n${formData.message}`
+        );
 
-            const result = await response.json();
+        const mailtoUrl = `mailto:theplotarmour@gmail.com?subject=${subject}&body=${body}`;
 
-            if (result.success) {
-                setIsSubmitted(true);
-                setFormData({ name: '', email: '', company: '', message: '' });
-            } else {
-                setErrorMessage('Something went wrong. Please try again or email us directly.');
-            }
-        } catch {
-            setErrorMessage('Network error. Please try again or email us directly.');
-        } finally {
-            setIsSubmitting(false);
-        }
+        // Open email client
+        window.location.href = mailtoUrl;
+
+        setIsSubmitting(false);
+        setFormData({ name: '', email: '', company: '', message: '' });
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -120,160 +101,137 @@ export function Contact() {
                                 <span className="text-cyan">ASCENT</span>
                             </h2>
 
-                            {isSubmitted ? (
-                                <motion.div
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    className="text-center py-12"
-                                >
-                                    <div className="w-16 h-16 rounded-full bg-cyan/20 flex items-center justify-center mx-auto mb-6">
-                                        <svg className="w-8 h-8 text-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                        </svg>
-                                    </div>
-                                    <h3 className="text-xl font-bold mb-2">Message Received</h3>
-                                    <p className="text-muted">We'll be in touch within 24 hours.</p>
-                                </motion.div>
-                            ) : (
-                                <form onSubmit={handleSubmit} className="space-y-6">
-                                    {/* Name */}
-                                    <div className="relative">
-                                        <input
-                                            type="text"
-                                            name="name"
-                                            value={formData.name}
-                                            onChange={handleChange}
-                                            required
-                                            className="w-full bg-transparent border-b border-[var(--glass-border)] 
+                            <form onSubmit={handleSubmit} className="space-y-6">
+                                {/* Name */}
+                                <div className="relative">
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full bg-transparent border-b border-[var(--glass-border)] 
                                py-4 px-0 text-white placeholder-transparent
                                focus:outline-none focus:border-cyan
                                transition-colors peer"
-                                            placeholder="Name"
-                                        />
-                                        <label
-                                            className="absolute left-0 top-4 text-muted text-sm
+                                        placeholder="Name"
+                                    />
+                                    <label
+                                        className="absolute left-0 top-4 text-muted text-sm
                                transition-all duration-200
                                peer-placeholder-shown:text-base peer-placeholder-shown:top-4
                                peer-focus:text-sm peer-focus:-top-2 peer-focus:text-cyan
                                peer-valid:text-sm peer-valid:-top-2"
-                                        >
-                                            Name
-                                        </label>
-                                    </div>
+                                    >
+                                        Name
+                                    </label>
+                                </div>
 
-                                    {/* Email */}
-                                    <div className="relative">
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            value={formData.email}
-                                            onChange={handleChange}
-                                            required
-                                            className="w-full bg-transparent border-b border-[var(--glass-border)] 
+                                {/* Email */}
+                                <div className="relative">
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full bg-transparent border-b border-[var(--glass-border)] 
                                py-4 px-0 text-white placeholder-transparent
                                focus:outline-none focus:border-cyan
                                transition-colors peer"
-                                            placeholder="Email"
-                                        />
-                                        <label
-                                            className="absolute left-0 top-4 text-muted text-sm
+                                        placeholder="Email"
+                                    />
+                                    <label
+                                        className="absolute left-0 top-4 text-muted text-sm
                                transition-all duration-200
                                peer-placeholder-shown:text-base peer-placeholder-shown:top-4
                                peer-focus:text-sm peer-focus:-top-2 peer-focus:text-cyan
                                peer-valid:text-sm peer-valid:-top-2"
-                                        >
-                                            Email
-                                        </label>
-                                    </div>
+                                    >
+                                        Email
+                                    </label>
+                                </div>
 
-                                    {/* Company */}
-                                    <div className="relative">
-                                        <input
-                                            type="text"
-                                            name="company"
-                                            value={formData.company}
-                                            onChange={handleChange}
-                                            className="w-full bg-transparent border-b border-[var(--glass-border)] 
+                                {/* Company */}
+                                <div className="relative">
+                                    <input
+                                        type="text"
+                                        name="company"
+                                        value={formData.company}
+                                        onChange={handleChange}
+                                        className="w-full bg-transparent border-b border-[var(--glass-border)] 
                                py-4 px-0 text-white placeholder-transparent
                                focus:outline-none focus:border-cyan
                                transition-colors peer"
-                                            placeholder="Company"
-                                        />
-                                        <label
-                                            className="absolute left-0 top-4 text-muted text-sm
+                                        placeholder="Company"
+                                    />
+                                    <label
+                                        className="absolute left-0 top-4 text-muted text-sm
                                transition-all duration-200
                                peer-placeholder-shown:text-base peer-placeholder-shown:top-4
                                peer-focus:text-sm peer-focus:-top-2 peer-focus:text-cyan
                                peer-valid:text-sm peer-valid:-top-2"
-                                        >
-                                            Company
-                                        </label>
-                                    </div>
+                                    >
+                                        Company
+                                    </label>
+                                </div>
 
-                                    {/* Message */}
-                                    <div className="relative">
-                                        <textarea
-                                            name="message"
-                                            value={formData.message}
-                                            onChange={handleChange}
-                                            required
-                                            rows={4}
-                                            className="w-full bg-transparent border-b border-[var(--glass-border)] 
+                                {/* Message */}
+                                <div className="relative">
+                                    <textarea
+                                        name="message"
+                                        value={formData.message}
+                                        onChange={handleChange}
+                                        required
+                                        rows={4}
+                                        className="w-full bg-transparent border-b border-[var(--glass-border)] 
                                py-4 px-0 text-white placeholder-transparent
                                focus:outline-none focus:border-cyan
                                transition-colors peer resize-none"
-                                            placeholder="Project Details"
-                                        />
-                                        <label
-                                            className="absolute left-0 top-4 text-muted text-sm
+                                        placeholder="Project Details"
+                                    />
+                                    <label
+                                        className="absolute left-0 top-4 text-muted text-sm
                                transition-all duration-200
                                peer-placeholder-shown:text-base peer-placeholder-shown:top-4
                                peer-focus:text-sm peer-focus:-top-2 peer-focus:text-cyan
                                peer-valid:text-sm peer-valid:-top-2"
-                                        >
-                                            Project Details
-                                        </label>
-                                    </div>
-
-                                    {/* Error Message */}
-                                    {errorMessage && (
-                                        <div className="text-red-400 text-sm bg-red-400/10 px-4 py-3 rounded-lg">
-                                            {errorMessage}
-                                        </div>
-                                    )}
-
-                                    {/* Submit */}
-                                    <Button
-                                        type="submit"
-                                        variant="primary"
-                                        size="lg"
-                                        fullWidth
-                                        loading={isSubmitting}
                                     >
-                                        Send Inquiry
-                                    </Button>
+                                        Project Details
+                                    </label>
+                                </div>
 
-                                    {/* Or Schedule a Call */}
-                                    <div className="text-center pt-4">
-                                        <span className="text-muted text-sm">Or</span>
-                                    </div>
+                                {/* Submit */}
+                                <Button
+                                    type="submit"
+                                    variant="primary"
+                                    size="lg"
+                                    fullWidth
+                                    loading={isSubmitting}
+                                >
+                                    Send Inquiry
+                                </Button>
 
-                                    <a
-                                        href="https://calendly.com/theplotarmour/30min"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 
+                                {/* Or Schedule a Call */}
+                                <div className="text-center pt-4">
+                                    <span className="text-muted text-sm">Or</span>
+                                </div>
+
+                                <a
+                                    href="https://calendly.com/theplotarmour/30min"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 
                                            border border-[var(--glass-border)] rounded-lg
                                            text-white hover:border-cyan hover:text-cyan
                                            transition-all duration-300 font-medium"
-                                    >
-                                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                        </svg>
-                                        Schedule a 30-min Call
-                                    </a>
-                                </form>
-                            )}
+                                >
+                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                    Schedule a 30-min Call
+                                </a>
+                            </form>
                         </div>
                     </ScrollReveal>
 
