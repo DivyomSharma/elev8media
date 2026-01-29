@@ -153,12 +153,12 @@ export function Methodology() {
                                     </span>
 
                                     {/* Title */}
-                                    <h3 className="text-display text-base md:text-xl lg:text-2xl mb-2 md:mb-3">
+                                    <h3 className="text-display text-sm sm:text-base md:text-lg lg:text-xl mb-2 md:mb-3 break-words">
                                         {phase.title}
                                     </h3>
 
                                     {/* Description */}
-                                    <p className="text-xs md:text-sm text-muted leading-relaxed">
+                                    <p className="text-[10px] sm:text-xs md:text-sm text-muted leading-relaxed">
                                         {phase.description}
                                     </p>
                                 </motion.div>

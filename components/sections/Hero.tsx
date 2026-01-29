@@ -60,21 +60,6 @@ export function Hero() {
                     initial="hidden"
                     animate="visible"
                 >
-                    {/* Top label */}
-                    <motion.div variants={heroTextItem} className="mb-4">
-                        <span className="text-label tracking-[0.2em]">ELEV8 MEDIA</span>
-                    </motion.div>
-
-                    {/* Sub label */}
-                    <motion.div variants={heroTextItem} className="mb-16">
-                        <span
-                            className="text-sm font-medium tracking-wide"
-                            style={{ color: 'var(--color-accent-cyan)' }}
-                        >
-                            Growth Agency
-                        </span>
-                    </motion.div>
-
                     {/* Main headline */}
                     <motion.h1
                         variants={heroTextItem}
@@ -100,7 +85,7 @@ export function Hero() {
                     </motion.p>
 
                     {/* CTA */}
-                    <motion.div variants={heroTextItem} className="mt-16">
+                    <motion.div variants={heroTextItem} className="mt-16 mb-28">
                         <Button
                             variant="glass"
                             size="lg"
@@ -130,7 +115,7 @@ export function Hero() {
 
                 {/* Scroll indicator */}
                 <motion.div
-                    className="absolute bottom-8 left-1/2 -translate-x-1/2"
+                    className="absolute bottom-4 left-1/2 -translate-x-1/2"
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 2, duration: 0.6 }}
