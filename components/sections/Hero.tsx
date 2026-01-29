@@ -71,7 +71,7 @@ export function Hero() {
                     >
                         PRECISION GROWTH
                         <br />
-                        <span className="gradient-text">ENGINEERED</span>
+                        <span className="text-cyan">ENGINEERED</span>
                     </motion.h1>
 
                     {/* Description */}
