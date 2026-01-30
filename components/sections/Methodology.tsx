@@ -153,7 +153,7 @@ export function Methodology() {
                                     </span>
 
                                     {/* Title */}
-                                    <h3 className="text-display text-sm sm:text-base md:text-lg lg:text-xl mb-2 md:mb-3 break-words">
+                                    <h3 className="text-display text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl mb-2 md:mb-3 whitespace-nowrap">
                                         {phase.title}
                                     </h3>
 
