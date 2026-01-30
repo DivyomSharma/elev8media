@@ -86,7 +86,7 @@ export function Methodology() {
                 </ScrollReveal>
 
                 {/* Infinity loop visualization */}
-                <div className="relative max-w-5xl mx-auto">
+                <div className="relative max-w-7xl mx-auto">
                     {/* SVG infinity path */}
                     <svg
                         className="absolute inset-0 w-full h-full pointer-events-none"
