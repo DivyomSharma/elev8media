@@ -85,7 +85,7 @@ export function Hero() {
                     </motion.p>
 
                     {/* CTA */}
-                    <motion.div variants={heroTextItem} className="mt-16 mb-28">
+                    <motion.div variants={heroTextItem} className="mt-16 mb-16 md:mb-28">
                         <Button
                             variant="glass"
                             size="lg"

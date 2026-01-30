@@ -101,7 +101,7 @@ export function FeaturedWork() {
             <div
                 ref={containerRef}
                 onScroll={handleScroll}
-                className="flex gap-6 overflow-x-auto scrollbar-hide px-[15%] pb-8 snap-x snap-mandatory"
+                className="flex gap-6 overflow-x-auto scrollbar-hide px-6 md:px-[15%] pb-8 snap-x snap-mandatory"
                 style={{
                     scrollbarWidth: 'none',
                     msOverflowStyle: 'none',
@@ -110,7 +110,7 @@ export function FeaturedWork() {
                 {projects.map((project, index) => (
                     <motion.div
                         key={project.id}
-                        className="flex-shrink-0 w-[70vw] max-w-[800px] snap-center"
+                        className="flex-shrink-0 w-[85vw] md:w-[70vw] max-w-[800px] snap-center"
                         initial={{ opacity: 0.6, scale: 0.9 }}
                         animate={{
                             opacity: activeIndex === index ? 1 : 0.6,

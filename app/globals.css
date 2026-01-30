@@ -403,10 +403,16 @@ a {
 }
 
 .section {
-  padding: var(--space-24) 0;
+  padding: var(--space-16) 0;
 }
 
 @media (min-width: 768px) {
+  .section {
+    padding: var(--space-24) 0;
+  }
+}
+
+@media (min-width: 1024px) {
   .section {
     padding: var(--space-32) 0;
   }
