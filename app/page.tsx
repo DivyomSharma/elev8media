@@ -45,10 +45,10 @@ export default function Home() {
         <Methodology />
 
         {/* Impact Metrics - Results Dashboard */}
-        <ImpactMetrics />
+        {/* <ImpactMetrics /> */}
 
         {/* Testimonials - Social Proof */}
-        <Testimonials />
+        {/* <Testimonials /> */}
 
         {/* Contact - Initiation Point */}
         <Contact />

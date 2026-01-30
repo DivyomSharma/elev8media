@@ -11,11 +11,6 @@ const projects = [
         title: 'PLOTARMOUR STORE',
         image: '/projects/plotarmour-store.png',
         category: 'E-Commerce',
-        metrics: {
-            revenue: '+450%',
-            roas: '9.4x',
-            impressions: '5.2M',
-        },
         description: 'High-end streetwear brand scaling with dark aesthetic and exclusive drops.',
     },
     {
@@ -24,11 +19,6 @@ const projects = [
         title: 'BATTALION',
         image: '/projects/battalion.png',
         category: 'Game Dev',
-        metrics: {
-            revenue: '125k+',
-            roas: 'Organic',
-            impressions: '1.8M',
-        },
         description: 'Tactical FPS game with high-fidelity graphics and competitive gameplay mechanics.',
     },
     {
@@ -37,11 +27,6 @@ const projects = [
         title: 'DIVER APP',
         image: '/projects/diver-app.png',
         category: 'Social / Web3',
-        metrics: {
-            revenue: 'Seed',
-            roas: 'N/A',
-            impressions: '850k',
-        },
         description: 'Decentralized social platform connecting users through shared interests and nodes.',
     },
     {
@@ -50,11 +35,6 @@ const projects = [
         title: 'COURTWISE AI',
         image: '/projects/courtwise-ai.png',
         category: 'Legal Tech',
-        metrics: {
-            revenue: 'B2B',
-            roas: 'High',
-            impressions: '400k',
-        },
         description: 'AI-powered legal assistant simplifying case research and documentation.',
     },
 ];
@@ -155,31 +135,9 @@ export function FeaturedWork() {
                                 </h3>
 
                                 {/* Description */}
-                                <p className="text-sm text-muted mb-6">
+                                <p className="text-sm text-muted">
                                     {project.description}
                                 </p>
-
-                                {/* Metrics */}
-                                <div className="flex gap-8 pt-6 border-t border-[var(--glass-border)]">
-                                    <div>
-                                        <span className="text-mono text-2xl text-cyan font-bold">
-                                            {project.metrics.revenue}
-                                        </span>
-                                        <span className="block text-xs text-muted mt-1">Revenue</span>
-                                    </div>
-                                    <div>
-                                        <span className="text-mono text-2xl text-cyan font-bold">
-                                            {project.metrics.roas}
-                                        </span>
-                                        <span className="block text-xs text-muted mt-1">ROAS</span>
-                                    </div>
-                                    <div>
-                                        <span className="text-mono text-2xl text-cyan font-bold">
-                                            {project.metrics.impressions}
-                                        </span>
-                                        <span className="block text-xs text-muted mt-1">Impressions</span>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </motion.div>
@@ -205,7 +163,7 @@ export function FeaturedWork() {
                     />
                 ))}
             </div>
-        </section>
+        </section >
     );
 }
 
