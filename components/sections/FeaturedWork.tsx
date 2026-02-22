@@ -9,33 +9,29 @@ const projects = [
         id: 1,
         client: 'PlotArmour',
         title: 'PLOTARMOUR STORE',
-        image: '/projects/plotarmour-store.png',
         category: 'E-Commerce',
         description: 'High-end streetwear brand scaling with dark aesthetic and exclusive drops.',
     },
     {
         id: 2,
+        client: 'PlotArmour',
+        title: 'PLOTARMOUR STUDIO',
+        category: 'Creative Hub',
+        description: 'Multi-disciplinary creative agency pushing the boundaries of digital and physical experiences.',
+    },
+    {
+        id: 3,
         client: 'Battalion',
         title: 'BATTALION',
-        image: '/projects/battalion.png',
         category: 'Game Dev',
         description: 'Tactical FPS game with high-fidelity graphics and competitive gameplay mechanics.',
     },
     {
-        id: 3,
-        client: 'Diver',
-        title: 'DIVER APP',
-        image: '/projects/diver-app.png',
-        category: 'Social / Web3',
-        description: 'Decentralized social platform connecting users through shared interests and nodes.',
-    },
-    {
         id: 4,
-        client: 'Courtwise',
-        title: 'COURTWISE AI',
-        image: '/projects/courtwise-ai.png',
-        category: 'Legal Tech',
-        description: 'AI-powered legal assistant simplifying case research and documentation.',
+        client: 'Suruchi',
+        title: 'SURUCHI',
+        category: 'Manufacturing',
+        description: 'State-of-the-art manufacturing unit of PlotArmour, delivering unparalleled physical product quality.',
     },
 ];
 
@@ -57,7 +53,7 @@ export function FeaturedWork() {
 
     return (
         <section id="work" className="section relative overflow-hidden">
-            <div className="container mb-12">
+            <div className="container mb-16">
                 <ScrollReveal className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
                     <div>
                         <span className="text-label mb-4 block">Portfolio</span>
@@ -77,93 +73,54 @@ export function FeaturedWork() {
                 </ScrollReveal>
             </div>
 
-            {/* Horizontal scroll carousel */}
-            <div
-                ref={containerRef}
-                onScroll={handleScroll}
-                className="flex gap-6 overflow-x-auto scrollbar-hide px-6 md:px-[15%] pb-8 snap-x snap-mandatory"
-                style={{
-                    scrollbarWidth: 'none',
-                    msOverflowStyle: 'none',
-                }}
-            >
-                {projects.map((project, index) => (
-                    <motion.div
-                        key={project.id}
-                        className="flex-shrink-0 w-[85vw] md:w-[70vw] max-w-[800px] snap-center"
-                        initial={{ opacity: 0.6, scale: 0.9 }}
-                        animate={{
-                            opacity: activeIndex === index ? 1 : 0.6,
-                            scale: activeIndex === index ? 1 : 0.9,
-                        }}
-                        transition={{ duration: 0.4 }}
-                    >
-                        <div className="glass-card p-0 overflow-hidden group cursor-pointer">
-                            {/* Project image */}
-                            <div
-                                className="relative aspect-[4/3] overflow-hidden"
+            {/* Cascading Grid */}
+            <div className="container">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                    {projects.map((project, index) => (
+                        <ScrollReveal
+                            key={project.id}
+                            animation="fadeUp"
+                            delay={index * 0.15}
+                            className={`flex ${index % 2 !== 0 ? 'md:mt-16' : ''}`}
+                        >
+                            <motion.div
+                                className="glass-card p-6 md:p-8 w-full group cursor-pointer relative overflow-hidden"
+                                whileHover={{ scale: 1.02 }}
+                                transition={{ duration: 0.3 }}
                             >
-                                <img
-                                    src={project.image}
-                                    alt={project.title}
-                                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                />
-
-                                {/* Overlay gradient */}
+                                {/* Overlay gradient on hover */}
                                 <div
-                                    className="absolute inset-0 bg-gradient-to-t from-[var(--color-dark-primary)] via-transparent to-transparent opacity-60"
+                                    className="absolute inset-0 bg-gradient-to-br from-[var(--color-dark-surface)] to-[var(--color-dark-primary)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"
                                 />
 
-                                {/* Category badge */}
-                                <div className="absolute top-4 left-4">
-                                    <span className="text-label bg-[rgba(0,0,0,0.6)] backdrop-blur-sm px-3 py-1 rounded-full">
+                                {/* Meta details */}
+                                <div className="flex justify-between items-start mb-8">
+                                    <span className="text-label bg-[var(--glass-border)] px-3 py-1 rounded-full">
                                         {project.category}
                                     </span>
+                                    <span className="text-xs text-muted uppercase tracking-wider font-mono">
+                                        0{project.id}
+                                    </span>
                                 </div>
-                            </div>
 
-                            {/* Content */}
-                            <div className="p-8">
-                                {/* Client */}
-                                <span className="text-xs text-muted uppercase tracking-wider">
-                                    {project.client}
-                                </span>
-
-                                {/* Title */}
-                                <h3 className="text-display text-2xl mt-2 mb-4 group-hover:text-cyan transition-colors">
-                                    {project.title}
-                                </h3>
-
-                                {/* Description */}
-                                <p className="text-sm text-muted">
-                                    {project.description}
-                                </p>
-                            </div>
-                        </div>
-                    </motion.div>
-                ))}
+                                {/* Content */}
+                                <div>
+                                    <span className="text-xs text-cyan uppercase tracking-wider mb-2 block font-medium">
+                                        {project.client}
+                                    </span>
+                                    <h3 className="text-display text-xl md:text-2xl mt-1 mb-4 group-hover:text-amber transition-colors line-clamp-2">
+                                        {project.title}
+                                    </h3>
+                                    <p className="text-sm text-muted leading-relaxed">
+                                        {project.description}
+                                    </p>
+                                </div>
+                            </motion.div>
+                        </ScrollReveal>
+                    ))}
+                </div>
             </div>
-
-            {/* Navigation dots */}
-            <div className="flex justify-center gap-2 mt-8">
-                {projects.map((_, index) => (
-                    <button
-                        key={index}
-                        className={`w-2 h-2 rounded-full transition-all duration-300 ${activeIndex === index
-                            ? 'w-8 bg-cyan'
-                            : 'bg-[var(--color-dark-border)] hover:bg-[var(--color-dark-border-light)]'
-                            }`}
-                        onClick={() => {
-                            containerRef.current?.scrollTo({
-                                left: index * containerRef.current.clientWidth * 0.7,
-                                behavior: 'smooth',
-                            });
-                        }}
-                        aria-label={`Go to project ${index + 1}`}
-                    />
-                ))}
-            </div>
-        </section >
+        </section>
     );
 }
 
