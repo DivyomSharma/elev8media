@@ -11,17 +11,17 @@
 :root {
   /* === COLOR ARCHITECTURE === */
 
-  /* Foundation Palette - Dark Atmospheric */
-  --color-dark-primary: #0f0f0f;
-  /* Rich charcoal */
-  --color-dark-space: #1a1a1a;
-  /* Deep space */
-  --color-dark-surface: #242424;
-  /* Elevated blacks */
-  --color-dark-border: #2a2a2a;
-  /* Gunmetal */
-  --color-dark-border-light: #333333;
-  /* Lighter gunmetal */
+  /* Foundation Palette - True Black with deep blue undertone on surfaces */
+  --color-dark-primary: #000000;
+  /* True black */
+  --color-dark-space: #020408;
+  /* Deep void with slight blue tint */
+  --color-dark-surface: #050a12;
+  /* Glassy dark blue-ish black */
+  --color-dark-border: #0a1525;
+  /* Deep blue-gray border */
+  --color-dark-border-light: #122238;
+  /* Lighter blue-gray */
 
   /* Accent System - Precision Colors */
   --color-accent-cyan: #00e5ff;
@@ -35,11 +35,13 @@
   --color-white-muted: rgba(255, 255, 255, 0.6);
   --color-white-subtle: rgba(255, 255, 255, 0.4);
 
-  /* Glass Morphism */
-  --glass-bg: rgba(26, 26, 26, 0.4);
-  --glass-border: rgba(255, 255, 255, 0.06);
-  --glass-border-hover: rgba(255, 255, 255, 0.12);
-  --glass-blur: blur(20px) saturate(180%);
+  /* Glass Morphism - Complete Black & Hint of Blue */
+  --glass-bg: rgba(2, 6, 15, 0.5);
+  /* Very dark, slight blue hint */
+  --glass-border: rgba(0, 229, 255, 0.12);
+  /* Hint of cyan/blue from logo */
+  --glass-border-hover: rgba(0, 229, 255, 0.3);
+  --glass-blur: blur(24px) saturate(160%);
 
   /* === TYPOGRAPHY === */
 

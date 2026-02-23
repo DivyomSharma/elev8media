@@ -26,7 +26,7 @@ export function MobileNav({ items, isOpen, onClose }: MobileNavProps) {
         >
             {/* Backdrop */}
             <motion.div
-                className="absolute inset-0 bg-[rgba(0,0,0,0.8)] backdrop-blur-sm"
+                className="absolute inset-0 bg-[rgba(2,6,15,0.85)] backdrop-blur-sm"
                 onClick={onClose}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -36,7 +36,7 @@ export function MobileNav({ items, isOpen, onClose }: MobileNavProps) {
             {/* Drawer */}
             <motion.nav
                 className="absolute right-0 top-0 bottom-0 w-full max-w-[400px] 
-                   bg-[var(--color-dark-space)] border-l border-[rgba(255,255,255,0.06)]
+                   bg-[rgba(2,6,15,0.95)] border-l border-[var(--glass-border)]
                    flex flex-col"
                 initial={{ x: '100%' }}
                 animate={{ x: 0 }}
@@ -44,7 +44,7 @@ export function MobileNav({ items, isOpen, onClose }: MobileNavProps) {
                 transition={{ type: 'spring', damping: 30, stiffness: 300 }}
             >
                 {/* Header */}
-                <div className="flex items-center justify-between p-6 border-b border-[rgba(255,255,255,0.06)]">
+                <div className="flex items-center justify-between p-6 border-b border-[var(--glass-border)]">
                     <span className="text-xl font-display font-bold">
                         <span className="text-white">ELEV</span>
                         <span className="text-[var(--color-accent-cyan)]">8</span>
@@ -53,8 +53,8 @@ export function MobileNav({ items, isOpen, onClose }: MobileNavProps) {
                     <button
                         onClick={onClose}
                         className="w-10 h-10 flex items-center justify-center rounded-lg 
-                       border border-[rgba(255,255,255,0.1)] hover:border-[rgba(255,255,255,0.2)]
-                       transition-colors"
+                       border border-[rgba(0,229,255,0.12)] hover:border-[rgba(0,229,255,0.3)]
+                       bg-[rgba(2,6,15,0.5)] transition-colors"
                         aria-label="Close menu"
                     >
                         <svg
@@ -101,7 +101,7 @@ export function MobileNav({ items, isOpen, onClose }: MobileNavProps) {
                 </div>
 
                 {/* Footer */}
-                <div className="p-6 border-t border-[rgba(255,255,255,0.06)]">
+                <div className="p-6 border-t border-[var(--glass-border)]">
                     <Button variant="primary" fullWidth onClick={onClose}>
                         Start Project
                     </Button>

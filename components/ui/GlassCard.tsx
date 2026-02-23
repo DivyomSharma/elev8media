@@ -51,11 +51,11 @@ export const GlassCard = forwardRef<HTMLDivElement, GlassCardProps>(
         ref={ref}
         className={`
           ${variantStyles[variant]}
-          border border-[rgba(255,255,255,0.06)]
+          border border-[var(--glass-border)]
           rounded-xl
           ${paddingMap[padding]}
           transition-all duration-300
-          ${hover ? 'hover:border-[rgba(255,255,255,0.12)]' : ''}
+          ${hover ? 'hover:border-[var(--glass-border-hover)]' : ''}
           ${glowMap[glow]}
           ${className}
         `}

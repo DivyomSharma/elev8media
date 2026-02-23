@@ -71,7 +71,7 @@ export default function RootLayout({
     >
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <meta name="theme-color" content="#0f0f0f" />
+        <meta name="theme-color" content="#000000" />
       </head>
       <body className="antialiased">
         {children}

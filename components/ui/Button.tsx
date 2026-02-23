@@ -37,9 +37,9 @@ const variantStyles: Record<ButtonVariant, string> = {
     hover:bg-[rgba(255,255,255,0.05)]
   `,
     glass: `
-    bg-[rgba(26,26,26,0.4)] backdrop-blur-[20px]
-    text-white border border-[rgba(255,255,255,0.06)]
-    hover:border-[rgba(0,229,255,0.5)]
+    bg-[rgba(2,6,15,0.5)] backdrop-blur-[24px] saturate-[160%]
+    text-white border border-[rgba(0,229,255,0.12)]
+    hover:border-[rgba(0,229,255,0.3)]
     hover:shadow-[0_0_20px_rgba(0,229,255,0.2)]
   `,
 };

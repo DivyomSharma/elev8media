@@ -55,7 +55,7 @@ export function Header() {
           h-[var(--header-height)]
           transition-all duration-300
           ${isScrolled
-                        ? 'bg-[rgba(15,15,15,0.8)] backdrop-blur-xl border-b border-[rgba(255,255,255,0.06)]'
+                        ? 'bg-[rgba(2,6,15,0.85)] backdrop-blur-xl border-b border-[var(--glass-border)]'
                         : 'bg-transparent'
                     }
         `}
